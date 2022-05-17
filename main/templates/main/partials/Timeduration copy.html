@@ -1,0 +1,25 @@
+
+{% if badAddAlert %}
+        <div id="badAddAlert">This Student Has already been Added</div>
+            {% elif nullAddAlert%}
+                <div id="nullAddAlert">That is not a valid Entry <br>(Your Input is either empty, spelt incorrectly or<br> Student may have not been added previously)</div>
+                    {%elif endSessionAlert%}
+                        <div id="endSessionAlert">Session Ended</div>
+    {% endif %}
+<div id="testhit">
+<ul>
+    {% for item in sObject.all %}
+        
+            <li id="{{item.id}}"><b>{{item.fullname}}</b> has been here for <span id="durr">{{item.currDuration|timesince }}</span>
+                <form action="{% url 'Sessions' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="deletebtn" value="del{{item.id}}">Delete</button>
+                </form>
+    
+            </li>
+
+    {% endfor %}
+</ul>
+
+
+</div>

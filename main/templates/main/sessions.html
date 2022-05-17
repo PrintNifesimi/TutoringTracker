@@ -1,0 +1,55 @@
+
+{%extends 'main/base.html'%}
+{% block activepage %}
+<li class="nav-item m-3">
+    <a href={% url 'Sessions'%} class="nav-link active">Session</a>
+  </li>
+  <li class="nav-item m-3">
+    <a href={% url 'allStudents' %} class="nav-link" >Students</a>
+  </li>
+{% endblock activepage %}
+{%block content%}
+    
+    <h2 class="text-center mt-4 fs-1">Current Session</h2>
+    <div class="mx-auto mt-4" style="width:90%;">
+    <form method="post" action="#" class="row g-2 align-items-center">
+        {% csrf_token %}
+        <div class="col-11">
+        <input type="search" name="addStudent" id="addStudent" list="students" placeholder="Start Typing A Name"
+        class="mx-auto form-control form-control-lg px-4 py-3 h-25"/>
+        </div>
+        <div class="col-1">
+        <button hx-post="{% url 'Sessions' %}" hx-target="#student-list" type="submit" name="addToSession" value="addedToSession" class="btn btn-lg btn-outline-primary"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentcolor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+          </svg></button>
+    </div>
+        <datalist id="students">
+            {% for student in Stud.all  %}
+            <option value="{{student.toString}}">
+            {% endfor %}
+        </datalist>
+        <br>
+        
+        
+    </form>
+</div>
+
+<br>
+    <div id="student-list" class="mx-auto mt-3" style="width:90%;">  
+    
+     
+          {% include 'main/partials/Timeduration.html' %}
+    </div>
+
+<br>
+<div class="d-flex justify-content-center">
+    <form action="#" method="post">
+        {% csrf_token %}
+        <button type="submit" name="endSession" value="endedSession" class="btn btn-outline-success mb-4">End Session</button>
+    </form>
+
+  </div>
+    
+{% endblock %}

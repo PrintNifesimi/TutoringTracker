@@ -1,0 +1,45 @@
+{% if nullHourAdd %}
+    <div id="nullHourAdd" class="alert alert-warning alert-dismissible fade show">
+        <p>One or more of your enteries is empty, make it 0 instead</p>
+    </div>
+{% endif %}
+{% if successAdd %}
+    <div id="successAdd" class="alert alert-success d-flex align-items-center">
+        <p>Add Successful</p>
+    </div>
+{% endif %}
+<div class="mx-auto mb-5" style="width:75%">
+    <ul class="list-group list-group">
+{% for student in Students %}
+
+        
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+            <p class="mb-3 ms-3"><b><a hx-get={% url 'AddHours' student.id%} hx-target="#rpla" style="cursor:pointer;">{{student}} </a></b> has 
+                <span  class="badge bg-primary rounded-pill"> {{student.hours}} hours, {{student.minutes}} minutes</span></p>
+                
+            </div>
+            <div class="ms-5" style="width:50%;">
+            {% if editStudent and student.id == studentID %}
+
+                <form method="post" class="row g-3">
+                    {% csrf_token %}
+                    <div class="input-group col-auto">
+                    <input type="number" placeholder="Hours" name="AddedHours" class="form-control form-control-lg w-25">
+                    <input type="number" placeholder="Minutes" name="AddedMinutes" class="form-control form-control-lg w-25">
+                    
+                    <button hx-post={% url 'AddHours' student.id%} hx-target="#rpla" type="submit" value="Add" hx-confirm="Are you sure?" class="btn btn-lg btn-outline-primary">Add</button>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+        
+        </li>
+   {% endfor %} 
+    </ul>
+</div>
+<div class="justify-content-center">
+    <p class="text-center fs-5">To add External Hours(e.g Library hours) to a student, click the students name. <br>After doing this enter the amount of hours and minutes in the inputfield that appears. <br><strong>If you wish to enter in only one value make sure to set the other to 0</strong></p>
+
+  </div>
+    
