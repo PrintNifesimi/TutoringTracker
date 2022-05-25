@@ -6,9 +6,37 @@
   <li class="nav-item m-3">
     <a href={% url 'allStudents' %} class="nav-link active" >Students</a>
   </li>
+  <li class="nav-item m-3">
+    <a href={% url 'logout' %} class="nav-link" >Logout</a>
+  </li>
 {% endblock activepage %}
 {%block content%}
 <h2 class="text-center mt-4 fs-1">All Students</h2>
+
+<a class="btn btn-primary float-start mx-5" data-bs-toggle="collapse" href="#infoTab" role="button" aria-expanded="false" aria-controls="collapseExample">
+Info
+</a>
+
+
+<div class="dropdown float-end mx-5">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+    Export
+  </button>
+  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+    <li><a class="dropdown-item active" href="{% url 'studentExport_txt' %}">Text File</a></li>
+    <li><a class="dropdown-item" href="{% url 'studentExport_csv' %}">CSV File</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="collapse mb-4" id="infoTab">
+  <div class="card card-body text-center">
+    To add External Hours(e.g Library hours) to a student, click the students name. <br>After doing this enter the amount of hours and minutes in the inputfield that appears. <br><strong>If you wish to enter in only one value make sure to set the other to 0</strong>
+  </div>
+</div>
+
+
 <div id="rpla">
     {% include 'main/partials/AddHours.html' %}
 </div>

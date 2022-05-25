@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+{% block activepage %}
+<li class="nav-item m-3">
+    <a href={% url 'Sessions'%} class="nav-link">Session</a>
+  </li>
+  <li class="nav-item m-3">
+    <a href={% url 'allStudents' %} class="nav-link" >Students</a>
+  </li>
+  <li class="nav-item m-3">
+    <a href={% url 'logout' %} class="nav-link active" >Login</a>
+  </li>
+{% endblock activepage %}
+{% block content %}
+<h2 class="text-center mt-4 fs-1">LOGIN</h2>
+{% if invalidUser %}
+<div id="invalidUser" class="alert alert-danger alert-dismissible fade show mx-5" role="alert">
+    <p>Either your Password or Username is incorrect</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{% endif %}
+
+
+<form method="POST" action="">
+    {% csrf_token %}
+<div class="form-floating mb-3 mx-5">
+{% if invalidUser %}
+<input type="text" name="userName" placeholder="Username" class="form-control is-invalid">
+{% else %}
+<input type="text" name="userName" placeholder="Username" class="form-control">
+{% endif %}
+<label for="floatingInput">Email address</label>
+</div>
+<div class="form-floating mx-5">
+    {% if invalidUser %}
+<input type="password" name="password" placeholder="Password" class="form-control is-invalid">
+    {% else %}
+    <input type="password" name="password" placeholder="Password" class="form-control">
+    {% endif %}
+<label for="floatingPassword">Password</label>
+</div>
+<button type="submit" class="btn btn-outline-primary mb-4 mx-5 mt-4">login</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
