@@ -1,5 +1,3 @@
-from email import message
-from urllib.request import HTTPRedirectHandler
 from django.contrib import admin
 from .models import Session, Students
 from django.urls import path
