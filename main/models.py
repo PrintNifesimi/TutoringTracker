@@ -16,12 +16,12 @@ class Students(models.Model):
         return self.lastName
     def totalSeconds(self):
         return (self.hours*3600)+(self.minutes*60)
-    def time(self):
-        return ((self.hours*3600)+(self.minutes*60))/3600
+    #def time(self):
+        #return ((self.hours*3600)+(self.minutes*60))/3600
     def __str__(self) -> str:
-        return self.lastName + " "+self.firstName
+        return self.firstName + " "+self.lastName
     def toString(self) -> str:
-        return self.lastName+" "+self.firstName 
+        return self.firstName+" "+self.lastName 
     
         
 

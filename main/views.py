@@ -15,7 +15,7 @@ import csv
 # Create your views here.
 
 def index(response):
-    studentsList = Students.objects.all()
+    studentsList = Students.objects.all().order_by('firstName')
     context={"Students":studentsList}
     return render(response, "main/AllStudents.html", context)
 
@@ -50,12 +50,15 @@ def logoutUser(request):
 @require_http_methods(['GET','POST'])
 @login_required(login_url='loginPage')
 def Sessions(response):
+    
     sesh=Session.objects.all().order_by('fullname')
-    stud=Students.objects.all()
+    stud=Students.objects.all().order_by('firstName')
+    
     badAddAlert=False
     nullAddAlert=False
     endSessionAlert=False
     if response.method == "POST":
+        
         if response.POST.get("addStudent") or response.POST.get("addStudent")=="":
             newStudentSession=Session(currDuration=datetime.timedelta(hours=0))
             newStudentSession.fullname=response.POST.get("addStudent")
@@ -117,9 +120,8 @@ def deleteStudent(response, id):
 @require_http_methods(['POST'])
 def signOut(response, id):
     student = Session.objects.get(id=id)
-
     sesh=Session.objects.all().order_by('fullname')
-    stud=Students.objects.all()
+    stud=Students.objects.all().order_by('firstName')
     badAddAlert=False
     nullAddAlert=False
     endSessionAlert=False
@@ -131,7 +133,8 @@ def signOut(response, id):
     calculatedT=time_now-student.currDuration
     
     for item in stud:
-        if str(student.fullname) == item.toString():
+        if student.fullname == item.toString():
+            
             toSeconds=calculatedT.seconds+item.totalSeconds()
             newHours= toSeconds/3600
             item.hours=int(newHours)
@@ -139,6 +142,7 @@ def signOut(response, id):
             item.save()
             student.delete()
             signOutSuccess=True
+            break
 
 
 
@@ -150,7 +154,7 @@ def signOut(response, id):
 
 @login_required(login_url='loginPage')
 def allStudents(response):
-    studentsList = Students.objects.all().order_by('lastName')
+    studentsList = Students.objects.all().order_by('firstName')
     context={"Students":studentsList}
     return render(response,"main/AllStudents.html",context)
 
@@ -192,7 +196,7 @@ def addHours(response,id):
 def studentExport_txt(request):
     response=HttpResponse(content_type='text/plain')   
     response['Content-Disposition'] = 'attachment; filename=Export_txt.txt'
-    students = Students.objects.all().order_by('lastName')
+    students = Students.objects.all().order_by('firstName')
     lines = []
     for student in students:
         strVar = str(student) + ' ---> '+str(student.hours)+' hours, '+str(student.minutes)+' minutes'+'\n'
@@ -207,7 +211,7 @@ def studentExport_csv(request):
     response=HttpResponse(content_type='text/csv')   
     response['Content-Disposition'] = 'attachment; filename=Export_csv.csv'
     writer = csv.writer(response)
-    students = Students.objects.all().order_by('lastName')
+    students = Students.objects.all().order_by('firstName')
     writer.writerow(['Student Name','Time'])
 
     for student in students:
