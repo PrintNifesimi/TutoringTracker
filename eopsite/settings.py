@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'eopsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'DB_2',
+        'USER':'eopDB',
+        'PASSWORD':'diSmah-kagje3-zagvyk',
+        'HOST':'database-1.cxqkr86uwv18.us-west-1.rds.amazonaws.com',
+        'POST':'5432'
     }
 }
 
