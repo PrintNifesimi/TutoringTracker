@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import string
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,11 +80,11 @@ WSGI_APPLICATION = 'eopsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DB_2',
-        'USER':'eopDB',
-        'PASSWORD':'diSmah-kagje3-zagvyk',
-        'HOST':'database-1.cxqkr86uwv18.us-west-1.rds.amazonaws.com',
-        'POST':'5432'
+        'NAME': config('NAME'),
+        'USER':config('USER'),
+        'PASSWORD':config('PASSWORD'),
+        'HOST':config('HOST'),
+        'PORT':config('PORT')
     }
 }
 
