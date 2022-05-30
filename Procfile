@@ -1,0 +1,1 @@
+web: gunicorn eopsite.wsgi --log-file -
