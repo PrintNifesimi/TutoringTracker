@@ -1,4 +1,3 @@
-from turtle import mode
 from django.db import models
 import datetime
 from datetime import time, timezone
