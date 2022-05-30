@@ -1,1 +1,1 @@
-web: gunicorn eopsite.wsgi --log-file -
+web: python manage.py migrate && gunicorn eopsite.wsgi
