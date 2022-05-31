@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'eopsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('NAME'),
-        'USER':config('USER'),
-        'PASSWORD':config('PASSWORD'),
-        'HOST':config('HOST'),
-        'PORT':config('PORT')
+        'NAME': 'DB_3',
+        'USER':'eopDB_2',
+        'PASSWORD':'diSmah-kagje3-zagvyk',
+        'HOST':'database-1.cxggtinnl99z.us-east-1.rds.amazonaws.com',
+        'PORT':'5432'
     }
 }
 '''DATABASES = {
