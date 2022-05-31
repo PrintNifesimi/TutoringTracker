@@ -1,1 +1,1 @@
-web: gunicorn eopsite.wsgi --log-file -
+web: gunicorn eopsite.wsgi && gunicorn --workers=3 --log-file -
