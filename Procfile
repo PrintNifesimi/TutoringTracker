@@ -1,1 +1,1 @@
-web: gunicorn eopsite.wsgi --timeout 15 --keep-alive 5 --log-level debug
+web: gunicorn eopsite.wsgi --log-level -
