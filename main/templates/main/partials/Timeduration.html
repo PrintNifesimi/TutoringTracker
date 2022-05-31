@@ -9,12 +9,12 @@
                                 <div id="signOutSuccess" class="alert alert-success d-flex align-items-center">Sign Out Success</div>
     {% endif %}
 
-    <div id="Timeduration-container" hx-get="{% url 'timeduration' %}" hx-trigger="every 60s" class="mx-auto w-75">
+    <div id="Timeduration-container" hx-get="{% url 'timeduration' %}" hx-trigger="every 60s" class="mx-auto" style="width:90%">
 <ul class="list-group list-group">
     {% for item in sObject.all %}
         
             <li id="{{item.id}}" class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
+                <div class="">
                 <b>{{item.fullname}}</b>
 
                 <span id="durr" class="badge bg-primary rounded-pill">{{item.currDuration|timesince }}</span>
@@ -23,7 +23,7 @@
                 <div class="d-flex justify-content-end">
                    
                        
-                <button class="btn btn-outline-danger mx-2" style="cursor: pointer;font-size: 18px;" hx-delete="{% url 'deleteStudent' item.id%}" 
+                <button class="btn btn-outline-danger mx-1" style="cursor: pointer;font-size: 18px;" hx-delete="{% url 'deleteStudent' item.id%}" 
                 hx-target="#student-list" 
                 hx-confirm="Deleting this student will not save their hours">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -31,7 +31,7 @@
                   </svg>
             </button>
             
-            <button class="btn btn-outline-success mx-2" style="cursor: pointer;font-size: 18px;" hx-post="{% url 'signOut' item.id%}" 
+            <button class="btn btn-outline-success mx-1" style="cursor: pointer;font-size: 18px;" hx-post="{% url 'signOut' item.id%}" 
                 hx-target="#student-list">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
                     <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
