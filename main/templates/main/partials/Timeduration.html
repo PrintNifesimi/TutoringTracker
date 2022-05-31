@@ -9,7 +9,7 @@
                                 <div id="signOutSuccess" class="alert alert-success d-flex align-items-center">Sign Out Success</div>
     {% endif %}
 
-    <div id="Timeduration-container" hx-get="{% url 'timeduration' %}" hx-trigger="every 60s" class="mx-auto w-100">
+    <div id="Timeduration-container" hx-get="{% url 'timeduration' %}" hx-trigger="every 60s" class="mx-auto w-75">
 <ul class="list-group list-group">
     {% for item in sObject.all %}
         
@@ -19,6 +19,10 @@
 
                 <span id="durr" class="badge bg-primary rounded-pill">{{item.currDuration|timesince }}</span>
                 </div>
+
+                <div class="d-flex justify-content-end">
+                   
+                       
                 <button class="btn btn-outline-danger mx-2" style="cursor: pointer;font-size: 18px;" hx-delete="{% url 'deleteStudent' item.id%}" 
                 hx-target="#student-list" 
                 hx-confirm="Deleting this student will not save their hours">
@@ -26,12 +30,13 @@
                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                   </svg>
             </button>
+            
             <button class="btn btn-outline-success mx-2" style="cursor: pointer;font-size: 18px;" hx-post="{% url 'signOut' item.id%}" 
                 hx-target="#student-list">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
                     <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                   </svg>
-            </button>
+            </button></div>
             </li>
 
     {% endfor %}
