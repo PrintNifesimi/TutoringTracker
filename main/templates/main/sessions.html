@@ -14,14 +14,17 @@
 {%block content%}
     
     <h2 class="text-center mt-4 fs-1">Current Session</h2>
-    <div class="mx-auto mt-4" style="width:90%;">
+    <div class="container mx-auto mt-4" style="width:80%;">
+      <div class="row justify-content-center">
+
+      
     <form method="post" action="#" class="row g-2 align-items-center">
         {% csrf_token %}
-        <div class="col-11">
+        <div class="col-10">
         <input type="search" name="addStudent" id="addStudent" list="students" placeholder="Start Typing A Name"
         class="mx-auto form-control form-control-lg px-4 py-3 h-25"/>
         </div>
-        <div class="col-1">
+        <div class="col-sm" >
         <button hx-post="{% url 'Sessions' %}" hx-target="#student-list" type="submit" name="addToSession" value="addedToSession" class="btn btn-lg btn-outline-primary"> 
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentcolor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -37,8 +40,16 @@
         
         
     </form>
-</div>
-
+</div></div>
+<a class="btn btn-primary float-start mx-3 mb-4 mt-2" data-bs-toggle="collapse" href="#infoTab" role="button" aria-expanded="false" aria-controls="collapseExample">
+  Info
+  </a><br>
+  <div class="collapse mb-4 mt-5" id="infoTab">
+    <div class="card card-body text-center">
+      Add students to a session using the Input field above. When a student is ready to leave click the green door icon to sign them out. <br> If you add a student on accident you can delete that student by clicking the red garbage icon <strong>(Their hours will not be saved!).</strong>
+      To Signout all students at once click the green End session button below the list of students.
+    </div>
+  </div>
 <br>
     <div id="student-list" class="mx-auto mt-3" style="width:90%;">  
     
