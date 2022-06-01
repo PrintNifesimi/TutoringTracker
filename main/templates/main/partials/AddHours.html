@@ -8,20 +8,20 @@
         <p>Add Successful</p>
     </div>
 {% endif %}
-<div class="mx-auto mb-5 w-75">
-    <ul class="list-group list-group">
+<div class="mx-auto mb-5" style="width:85%;">
+    <ul class="list-group">
 {% for student in Students %}
 
         
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-            <p class="mb-3 ms-3"><b><a hx-get={% url 'AddHours' student.id%} hx-target="#rpla" style="cursor:pointer;">{{student}} </a></b> has 
+        <li class="list-group-item d-flex align-items-start">
+            <div class="d-table d-sm-flex">
+            <p class="mb-3" ><b><a hx-get={% url 'AddHours' student.id%} hx-target="#rpla" style="cursor:pointer;">{{student}} </a></b> has 
                 <span  class="badge bg-primary rounded-pill"> {{student.hours}} hours, {{student.minutes}} minutes</span></p>
                 
-            </div>
-            <div class="ms-5" style="width:50%;">
+            
+            
             {% if editStudent and student.id == studentID %}
-
+            <div class="ms-0 ms-lg-4 w-auto">
                 <form method="post" class="row g-3">
                     {% csrf_token %}
                     <div class="input-group col-auto">
@@ -30,10 +30,11 @@
                     
                     <button hx-post={% url 'AddHours' student.id%} hx-target="#rpla" type="submit" value="Add" hx-confirm="Are you sure?" class="btn btn-lg btn-outline-primary">Add</button>
                     </div>
-                </form>
-                {% endif %}
+                </form> 
             </div>
-        
+                {% endif %}
+           
+        </div>
         </li>
    {% endfor %} 
     </ul>
