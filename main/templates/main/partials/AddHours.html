@@ -2,21 +2,22 @@
     <div id="nullHourAdd" class="alert alert-warning alert-dismissible fade show">
         <p>One or more of your enteries is empty, make it 0 instead</p>
     </div>
-{% endif %}
-{% if successAdd %}
+
+{% elif successAdd %}
     <div id="successAdd" class="alert alert-success d-flex align-items-center">
         <p>Add Successful</p>
     </div>
 {% endif %}
-<div class="mx-auto mb-5" style="width:85%;">
+<div class="mx-auto" style="width:85%;">
     <ul class="list-group">
 {% for student in Students %}
 
         
         <li class="list-group-item d-flex align-items-start">
-            <div class="d-table d-sm-flex">
+        <div class="d-table d-sm-flex">
             <div class="mb-3" ><span class="text-truncate d-block d-sm-inline" style="max-width:210px;"><b><a hx-get={% url 'AddHours' student.id%} hx-target="#rpla" style="cursor:pointer;">{{student}} </a></b></span> has 
-                <span  class="badge bg-primary rounded-pill"> {{student.hours}} hours, {{student.minutes}} minutes</span></div>
+                <span  class="badge bg-primary rounded-pill"> {{student.hours}} hours, {{student.minutes}} minutes</span>
+            </div>
                 
             
             
