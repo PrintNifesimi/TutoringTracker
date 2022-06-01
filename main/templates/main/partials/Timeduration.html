@@ -10,21 +10,21 @@
     {% endif %}
 
     <div id="Timeduration-container" hx-get="{% url 'timeduration' %}" hx-trigger="every 60s" class="mx-auto" style="width:90%">
-        <div style="flex-wrap:wrap">
+        
         <ul class="list-group list-group">
     {% for item in sObject.all %}
         
-            <li id="{{item.id}}" class="list-group-item d-flex justify-content-between align-items-start">
-                <div style="">
-                <span class="text-truncate d-block d-sm-table" style="max-width:130px;"><b>{{item.fullname}}</b></span>
+            <li id="{{item.id}}" class="list-group-item d-sm-flex justify-content-between align-items-end">
+                <div style="" class="me-md-5">
+                <span class="text-truncate d-block d-sm-table" style="max-width:250px;"><b>{{item.fullname}}</b></span>
                 <span class="d-sm-inline d-none">has been here for</span>
                 <span id="durr" class="badge bg-primary rounded-pill">{{item.currDuration|timesince }}</span>
                 </div>
 
-                <div class="d-sm-flex" >
+                <div class="d-sm-flex me-0" >
                    
                        
-                <button class="btn btn-outline-danger mx-1 mt-2 mt-sm-0" style="cursor: pointer;font-size: 18px;" hx-delete="{% url 'deleteStudent' item.id%}" 
+                <button class="btn btn-outline-danger mx-sm-2 mt-2 mt-sm-0 " style="cursor: pointer;font-size: 18px;" hx-delete="{% url 'deleteStudent' item.id%}" 
                 hx-target="#student-list" 
                 hx-confirm="Deleting this student will not save their hours">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -32,7 +32,7 @@
                   </svg>
             </button>
             
-            <button class="btn btn-outline-success mx-1 mt-2 mt-sm-0" style="cursor: pointer;font-size: 18px;" hx-post="{% url 'signOut' item.id%}" 
+            <button class="btn btn-outline-success mt-2 mt-sm-0" style="cursor: pointer;font-size: 18px;" hx-post="{% url 'signOut' item.id%}" 
                 hx-target="#student-list">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
                     <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
@@ -44,4 +44,3 @@
 </ul>
 </div>
 
-</div>
