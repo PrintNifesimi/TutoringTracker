@@ -15,8 +15,8 @@
         
         <li class="list-group-item d-flex align-items-start">
             <div class="d-table d-sm-flex">
-            <p class="mb-3" ><b><a hx-get={% url 'AddHours' student.id%} hx-target="#rpla" style="cursor:pointer;">{{student}} </a></b> has 
-                <span  class="badge bg-primary rounded-pill"> {{student.hours}} hours, {{student.minutes}} minutes</span></p>
+            <div class="mb-3" ><span class="text-truncate d-block d-sm-inline" style="max-width:210px;"><b><a hx-get={% url 'AddHours' student.id%} hx-target="#rpla" style="cursor:pointer;">{{student}} </a></b></span> has 
+                <span  class="badge bg-primary rounded-pill"> {{student.hours}} hours, {{student.minutes}} minutes</span></div>
                 
             
             
