@@ -9,7 +9,7 @@ This webapp is used to manage the amount of hours students aquire during tutorin
 - **Heroku, git** for deployment
 
 ## Login Page
-Loging in grants access to other pages
+Logging in grants access to other pages
 ![image](https://user-images.githubusercontent.com/96543196/191287879-15cd3cf5-a1d4-4fe2-a999-03004957af34.png)
 
 ## Sessions
