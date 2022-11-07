@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['eoptutoring.herokuapp.com','127.0.0.1:8000']
+ALLOWED_HOSTS = ['eoptutoring.herokuapp.com','127.0.0.1:8000','timetracker.up.railway.app']
 
 
 # Application definition
