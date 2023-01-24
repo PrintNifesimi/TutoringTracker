@@ -20,6 +20,7 @@ def index(response):
     return render(response, "main/AllStudents.html", context)
 
 @require_http_methods(['GET','POST'])
+@csrf_protect
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('allStudents')
