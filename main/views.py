@@ -156,6 +156,7 @@ def signOut(response, id):
     return render(response, "main/partials/Timeduration.html",context)
 
 @login_required(login_url='loginPage')
+@csrf_protect
 def allStudents(response):
     studentsList = Students.objects.all().order_by('firstName')
     context={"Students":studentsList}
