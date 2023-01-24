@@ -76,6 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eopsite.wsgi.application'
 
+CSRF_TRUSTED_ORIGINS = ['https://timetracker.up.railway.app/']
 
 
 # Database
