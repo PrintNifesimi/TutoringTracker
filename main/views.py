@@ -10,19 +10,20 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 import csv
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 #from .forms import sessionForm
 
 # Create your views here.
 
+@csrf_exempt
 def index(response):
     studentsList = Students.objects.all().order_by('firstName')
     context={"Students":studentsList}
     return render(response, "main/AllStudents.html", context)
 
 @require_http_methods(['GET','POST'])
-@csrf_protect
+@csrf_exempt
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('allStudents')
@@ -43,6 +44,7 @@ def loginPage(request):
         return render(request, "main/loginPage.html",context)
 
 @require_http_methods(['GET','POST'])
+@csrf_exempt
 def logoutUser(request):
     logout(request)
     return redirect('loginPage')
@@ -51,6 +53,7 @@ def logoutUser(request):
 
 
 @require_http_methods(['GET','POST'])
+@csrf_exempt
 @login_required(login_url='loginPage')
 def Sessions(response):
     
@@ -97,6 +100,7 @@ def Sessions(response):
     context={"sObject":sesh,"Stud":stud,"badAddAlert":badAddAlert,"nullAddAlert":nullAddAlert,"endSessionAlert":endSessionAlert}
     return render(response, "main/sessions.html", context)
 
+@csrf_exempt
 def TimeDuration(request):
     sesh=Session.objects.all().order_by('fullname')
     stud=Students.objects.all()
@@ -108,6 +112,7 @@ def TimeDuration(request):
     return render(request,"main/partials/Timeduration.html",context)
 
 @require_http_methods(['DELETE'])
+@csrf_exempt
 def deleteStudent(response, id):
     Session.objects.get(id=id).delete()
     sesh=Session.objects.all().order_by('fullname')
@@ -121,6 +126,7 @@ def deleteStudent(response, id):
     return render(response, "main/partials/Timeduration.html",context)
 
 @require_http_methods(['POST'])
+@csrf_exempt
 def signOut(response, id):
     student = Session.objects.get(id=id)
     sesh=Session.objects.all().order_by('fullname')
@@ -156,13 +162,14 @@ def signOut(response, id):
     return render(response, "main/partials/Timeduration.html",context)
 
 @login_required(login_url='loginPage')
-@csrf_protect
+@csrf_exempt
 def allStudents(response):
     studentsList = Students.objects.all().order_by('firstName')
     context={"Students":studentsList}
     return render(response,"main/AllStudents.html",context)
 
 @require_http_methods(['POST','GET'])
+@csrf_exempt
 def addHours(response,id):
     
     studentsList = Students.objects.all().order_by('firstName')
