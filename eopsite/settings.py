@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1:8000','timetracker.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://timetracker.up.railway.app/','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://timetracker.up.railway.app/']
 
 
 
